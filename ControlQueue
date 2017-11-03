@@ -1,0 +1,36 @@
+package ThreadsAndStuff;
+
+import java.util.Iterator;
+
+/**
+ * Threaded class that removes objects from an array list 
+ * @author amcgowan
+ *
+ */
+public class ControlQueue implements Runnable{
+
+	@Override
+	public void run() {
+
+		Iterator<Integer> it = Starter.numberList.iterator();
+		
+		while (it.hasNext()){
+			System.out.println("THREAD : "+Starter.numberList.toString());
+			// about to take off element
+			if (Starter.numberList.isEmpty()){
+				System.out.println("List empty");
+			} else {
+				System.out.println("Removed : "+Starter.numberList.get(0));
+				Starter.numberList.remove(0);
+			}
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				System.out.println("Problems");
+			}
+		}
+		
+	}
+
+	
+}
