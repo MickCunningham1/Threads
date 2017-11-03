@@ -1,0 +1,26 @@
+package ThreadsAndStuff;
+
+public class Counter implements Runnable {
+
+	
+
+	@Override
+	public void run() {
+		boolean go = true;
+
+		for (int loop = 10000; loop > 1; loop--) {
+
+			try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) {
+				System.out.println("Killing the Counddown Thread ! ");
+				go = false;
+				break;
+			}
+
+			System.out.println(loop);
+		}
+
+	}
+
+}
