@@ -1,0 +1,45 @@
+package ThreadsAndStuff;
+
+import java.util.Scanner;
+
+
+public class Timer implements Runnable {
+
+	private int time; 
+	
+	
+
+	@Override
+	public void run() {
+
+		System.out.println("Get ready to start");
+		// count down
+		for (int loop = 5; loop > 0; loop--) {
+			System.out.println(loop);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		System.out.println("Go...............");
+		
+		Scanner sc = new Scanner(System.in);
+		sc.next();
+			
+		
+		
+
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
+	}
+
+}
