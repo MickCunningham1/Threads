@@ -1,0 +1,55 @@
+package ThreadsAndStuff;
+
+import java.util.ArrayList;
+
+public class Starter {
+
+	/**
+	 * ArrayList to hold numbers
+	 */
+	public static ArrayList<Integer> numberList = new ArrayList<>();
+
+	/**
+	 * Main start point for the app.  Indirectly populates an arraylist and starts the thread
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+		// auto add to list
+		populateArrayList(1, 10, 0);
+
+		// start thread
+		ControlQueue cq = new ControlQueue();
+		Thread thread = new Thread(cq);
+		thread.start();
+
+		// auto add to list
+		populateArrayList(11, 20, 2000);
+
+		System.out.println("Main Thread finished");
+
+	}
+
+	/**
+	 * Populates the arraylist. Includes an optional delay
+	 * 
+	 * @param start
+	 * @param end
+	 * @param sleep
+	 *            in secs (the number of seconds to delay the addition of items)
+	 */
+	public static void populateArrayList(int start, int end, int sleep) {
+
+		// add numbers
+		for (int loop = start; loop <= end; loop++) {
+			numberList.add(loop);
+			try {
+				// sleep
+				Thread.sleep(sleep * 1000);
+			} catch (InterruptedException e) {
+				
+				e.printStackTrace();
+			}
+		}
+	}
+}
