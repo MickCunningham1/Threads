@@ -1,0 +1,36 @@
+package ThreadsAndStuff;
+
+public class CounterControl {
+
+	public static void main(String[] args) {
+
+		int delay = 2000;
+		
+		// create and start the counter thread
+		Counter cc = new Counter();
+		Thread t = new Thread(cc);
+		t.start();
+		
+		// check for command line argument for delay
+		if (args.length!=0){
+			// assuming value is valid - but could validate this.
+			delay = Integer.parseInt(args[0]);
+		}
+		
+		// and sleep 
+		try {
+			Thread.sleep(delay);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		if (t.isAlive()){
+			t.interrupt();
+			System.out.println("In Main about to Interrupt the Countdown thread");
+		}
+		
+		System.out.println("Main ended");
+
+	}
+
+}
